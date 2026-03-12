@@ -1,0 +1,29 @@
+services:
+  vpn:
+    build: ./vpn
+    container_name: sjtu-vpn
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.ipv4.conf.all.accept_redirects=0
+      - net.ipv4.conf.all.send_redirects=0
+    secrets:
+      - sjtu_password
+    environment:
+      - SJTU_USERNAME=${SJTU_USERNAME}
+    restart: unless-stopped
+
+  openclaw:
+    image: node:20-slim
+    container_name: sjtu-openclaw
+    network_mode: "service:vpn"
+    depends_on:
+      - vpn
+    working_dir: /app
+    command: >
+      bash -c "npm install -g openclaw && openclaw"
+    restart: unless-stopped
+
+secrets:
+  sjtu_password:
+    file: ./secrets/sjtu_password.txt
