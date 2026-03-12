@@ -78,7 +78,21 @@ openclaw devices list
 openclaw devices approve <RequestID>
 ```
 
-### 7. 注意事项
+### 7. 进一步的配置
+
+在 `bash` 中执行：
+
+```bash
+openclaw onboard --install-daemon
+```
+
+涉及到模型时，交大 API Base URL 为 `https://models.sjtu.edu.cn/api/v1`
+
+API 规范为 `Anthropic-compatible endpoint`，Auto Detect 结果应当与之一致。
+
+更多配置方法，请参考 https://github.com/openclaw/openclaw.
+
+### 8. 注意事项
 
 - `secrets/sjtu_password.txt` 已在 `.gitignore` 中，请勿手动提交；
 - VPN 会在断线后自动重连；
