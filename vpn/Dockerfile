@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-# Ubuntu 24.04 arm64 换清华源（新格式 ubuntu.sources）
+# Ubuntu 24.04 换清华源（新格式 ubuntu.sources）
 RUN if [ "$(dpkg --print-architecture)" = "arm64" ]; then  \
       printf 'Types: deb\nURIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports\nSuites: noble noble-updates noble-backports\nComponents: main restricted universe multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n\nTypes: deb\nURIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports\nSuites: noble-security\nComponents: main restricted universe multiverse\nSigned-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n' > /etc/apt/sources.list.d/ubuntu.sources; \
     else \
