@@ -40,16 +40,10 @@ docker exec -it sjtu-openclaw openclaw setup
 
 ### 4. 开放网关至局域网
 
-进入容器终端：
-
-```bash
-docker exec -it sjtu-openclaw bash
-```
-
 执行以下指令开放局域网访问（安全优于 `0.0.0.0`，仅同网段设备可访问）：
 
 ```bash
-openclaw config set gateway.bind lan
+docker exec -it sjtu-openclaw openclaw config set gateway.bind lan
 ```
 
 ### 5. 启动 UI 面板并完成设备配对
